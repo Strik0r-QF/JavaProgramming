@@ -25,8 +25,6 @@
     pdfstartview = Fit,
     breaklinks = true}
 \usepackage{caption}
-\captionsetup[table]{labelsep=space} % 表
-\captionsetup[figure]{labelsep=space} % 图
 \usepackage{enumitem}
 \usepackage{siunitx}
 
@@ -132,15 +130,117 @@
 \chapter{类与对象}
 
 面向对象程序设计 (Object Oriented Programming, OOP)
-就是使用对象进行程序设计.
+就是使用对象进行程序设计. 本章与后续几章将以一个 GTD 个人事务管理系统为例
+讨论 Java 的面向对象特性,
+如果读者想要了解有关面向对象的相关内容, 可以参阅笔者编写的
+《面向对象编程与设计》.
 
-对象是类的一个实例, 有状态和行为. 是属性 (数据、状态) 和处理属性的方法 
+\section{面向对象的基本概念}
+
+\subsection{类与对象}
+
+\textbf{对象} (object) 是类的一个实例, 有状态和行为. 是属性 (数据、状态) 和处理属性的方法 
 (行为、操作、服务) 的封装, 其中属性和方法作为一个不可分离的整体封装在一起, 
 这也意味着方法是依赖于对象存在的, 没有游离于对象之外的方法.
+一个对象的状态是由\textbf{数据域} (field) 及其当前的值来表示的,
+对象的行为是由\textbf{方法} (method) 来定义的.
 
-类是一个创建对象的模板 (或某类对象的一个集合), 规定了该类中所有对象的属性和方法, 
-对象是类的实例.
+\textbf{类} (class) 是一个创建对象的模板, 它规定了该类中所有对象的属性和方法, 
+对象是类的实例, 可以从一个类中创建多个实例.
+如果我们想要通过类为一类事物建模, 最关键的步骤是从这一类事物的许多具体的
+实例中抽象出主要特征.
 
+我们可以通过类为我们平时生活中需要处理的工作/事务/任务 (task) 进行建模. 
+一个任务可以由以下的信息所确定:
+\begin{itemize}[itemsep=0pt]
+    \item 对任务的简单描述 (description), 它指示了这一个任务大概将要
+    做什么, 例如, “喂猫”、“完成本周的离散数学课程作业”、“观看 Strik0r 的新视频”
+    或者 “阅读《深入理解计算机系统》”.
+    \item 截止时间 (deadline), 它指示了一个任务在哪一个具体的时间点
+    后将不再有效. 具体而言, 如果你的离散数学课在本周日的 23:30 截止提交,
+    那么你必须在这个时间点前完成并提交, 否则将会影响你的平时成绩.
+    \item 安排时间 (arrangement), 它指示了你决定大概在何时去做
+    这一项任务, 要注意的是, 为任务所安排的时间和任务的截止时间是不同的,
+    这就是说, 虽然你的离散数学作业在本周日的 23:30 才截止,
+    但是你依然可以安排在今天、明天或者有效期内的任意一天来完成这项工作.
+    \item 对任务的具体描述 (info), 它详细地记录了与任务有关的一些信息.
+\end{itemize}
+除此之外, 一个任务可能还涉及到 “委托人” (即你把这项工作分配给谁来完成)、
+“优先级” (即这项任务应当被优先完成, 还是可以适当延迟, 或者干脆没有优先级)、
+“标签” (这是你给任务设置的标记, 可以用于在信息管理系统中进行筛选)、
+“前置任务” (即为了完成这项任务, 你必须先完成什么任务) 等.
+我们现在只考虑简单描述 \lstinline|description|、截止时间 \lstinline|deadline|、
+安排时间 \lstinline|arrangement| 和具体描述 \lstinline|description|,
+考虑到数据管理的需求, 我们再为它增加一个唯一的标识数据域 \lstinline|id|.
+那么一个任务实际上可以被一个包含有简单描述、截止时间和安排时间的
+元组所唯一的确定, 我们抓住这一主要特征, 把这些任务抽象为一个类 \lstinline|Task|,
+我们将会在下一节中讲到如何在 Java 中将其创建出来.
+
+\begin{figure}[H]
+    \centering
+    % 图的内容
+    \includegraphics*[width=0.45\textwidth]{pic/UML/Task.png}
+    \caption{\lstinline|Task| 类的 UML 类图}
+    \label{uml:class TaskManagement.Task}
+\end{figure}
+
+\subsection{类的定义}
+
+Java 是纯面向对象的语言, 因此 Java 程序中的所有函数 
+(我们在 Java 中习惯将其称为\textbf{方法}, method) 都必须放在\textbf{类} (class,
+本书中常称为 Java class) 中来定义,
+更彻底地说, Java 程序中的所有内容都必须在类中来组织.
+类是 Java 程序的基本组成部分, 不管多大的 Java 工程, 都是由若干个 Java class 组织起来的.
+
+在 Java 中使用 \lstinline|class|
+关键字定义一个类, 具体的语法为
+\begin{lstlisting}
+(accessModifier) class className {
+
+}
+\end{lstlisting}
+关于 Java class 的定义, 我们做一些说明:
+
+首先, 在 \lstinline|class| 关键字前可以添加 
+\lstinline|public| \textbf{访问修饰符} (access modifier), 我们会在后面详细介绍
+各种访问修饰符的作用及其使用方法, 现在你只需要知道, 访问修饰符用于控制程序的其他部分对
+这段代码的访问权限级别, Java 对访问权限的控制是封装性在 Java 中的一个具体实现.
+
+因此, \lstinline|public class Hello {}| 表示我们定义了一个
+访问权限为 \lstinline|public| 的类 \lstinline|Hello|, 而类中的所有元素的定义全部放在
+类名后面的大括号里.
+
+其次, 在一个 Java 源文件中你可以定义多个类, 
+但是访问修饰符声明为 \lstinline|public| 的类 (这样的类称为\textbf{主类}) 最多
+只能有一个 (可以没有), 并且如果有的话, 源文件的文件名必须与主类的类名相同, 
+这就是我在前文中叫你把源文件命名为 \lstinline|Hello.java| 的原因.
+如果你没有注意到我的提示,
+把类 \lstinline|Hello| 声明在了其他源文件中, 那么你将会收到编译器的警告:
+\kaishu 错误: 类 \lstinline|Hello| 是公共的,
+应在名为 \lstinline|Hello.java| 的文件中声明. \songti
+
+一般来说, 我们约定一个源文件中仅编写一个类 (除非有测试需求).
+
+第三, Java 的类命名是有一定的规则的, 不合适的类命名会让人感到困惑, 进而
+大大降低代码的可读性和可维护性, Java class 的命名规则为:
+\begin{itemize}[itemsep = 0pt]
+    \item 类名必须以字母开头, 后面可以是字母和数字的任意组合, 一般用名词来给类命名;
+    \item 采用 \lstinline|Pascal| 命名规则, 即每一个英文字母的首字母大写;
+    \item 类名不能使用 Java 保留字;
+\end{itemize}
+
+
+\begin{code}
+    \lstinline|Task.java|
+    \lstset{
+        moreemph = {
+            id, description, deadline, arrangement,
+            info
+        },
+        emphstyle = \color{class_field},
+    }
+    \lstinputlisting[language=Java]{../src/cn/edu/nwpu/software/strik0r/TaskManagement/Task/Task.java}
+\end{code}
 \chapter{Java 语言概述}
 
 \quad\quad 关于 Java 语言的历史、计算机基础等内容我们在本章不做赘述, 我们直接从 Java 语言
@@ -160,56 +260,7 @@
     Java 语句和 \lstinline|.| 运算符三个角度来解释这段代码.
 \end{example}
 
-\subsection{类的定义}
 
-Java 是纯面向对象的语言, 因此 Java 程序中的所有函数 
-(我们在 Java 中习惯将其称为\textbf{方法}, method) 都必须放在\textbf{类} (class,
-本书中常称为 Java class) 中来定义,
-更彻底地说, Java 程序中的所有内容都必须在类中来组织.
-类是 Java 程序的基本组成部分, 不管多大的 Java 工程, 都是由若干个 Java class 组织起来的.
-
-在 Java 中使用 \lstinline|class|
-关键字定义一个类, 具体的语法为
-\begin{lstlisting}
-(accessModifier) class className {
-
-}
-\end{lstlisting}
-关于 Java class 的定义, 我们做几点说明:
-\begin{enumerate}
-    \item 在 \lstinline|class| 关键字前可以像例 \ref{helloJavaWorld} 一样添加 
-    \lstinline|public| \textbf{访问修饰符} (access modifier), 我们会在后面详细介绍
-    各种访问修饰符的作用及其使用方法, 现在你只需要知道, 访问修饰符用于控制程序的其他部分对
-    这段代码的访问权限级别, Java 对访问权限的控制是封装性在 Java 中的一个具体实现.
-
-    因此, \lstinline|public class Hello {}| 表示我们定义了一个
-    访问权限为 \lstinline|public| 的类 \lstinline|Hello|, 而类中的所有元素的定义全部放在
-    类名后面的大括号里.
-
-    \item 在一个 Java 源文件中你可以定义多个类, 
-    但是访问修饰符声明为 \lstinline|public| 的类 (这样的类称为\textbf{主类}) 最多
-    只能有一个 (可以没有), 并且如果有的话, 源文件的文件名必须与主类的类名相同, 
-    这就是我在前文中叫你把源文件命名为 \lstinline|Hello.java| 的原因.
-    如果你没有注意到我的提示,
-    把类 \lstinline|Hello| 声明在了其他源文件中, 那么你将会收到编译器的警告:
-    \kaishu 错误: 类 \lstinline|Hello| 是公共的,
-    应在名为 \lstinline|Hello.java| 的文件中声明. \songti
-
-    一般来说, 我们约定一个源文件中仅编写一个类 (除非有测试需求).
-
-    \item Java class 的命名规则为:
-    \begin{enumerate}
-        \item 类名必须以字母开头, 后面可以是字母和数字的任意组合, 一般用名词来给类命名;
-        \item 采用 \lstinline|Pascal| 命名规则, 即每一个英文字母的首字母大写;
-        \item 类名不能使用 Java 保留字;
-        \item 大小写敏感.
-    \end{enumerate}
-\end{enumerate}
-
-需要注意的是, 我们刚才仅仅展示了 Java 中对类的定义的语法中最简单的一个部分, 不过请放心,
-作为一本 “喂饭式” 的参考资料, 当我们需要再次使用某个知识的时候, 我会贴心的给你复习一遍
-(你甚至几乎不需要做任何额外的批注就能把以前学过的知识回顾一遍), 喂到你烦不胜烦. 因此
-你将会一次, 又一次, 再一次的看到上面的介绍.
 
 \subsection{方法的定义和 \lstinline|main| 方法}
 

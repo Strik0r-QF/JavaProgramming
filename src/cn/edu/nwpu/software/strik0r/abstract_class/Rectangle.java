@@ -1,4 +1,4 @@
-package cn.edu.nwpu.sws.strik0r.abstract_class;
+package cn.edu.nwpu.software.strik0r.abstract_class;
 
 public class Rectangle extends GeometricObject {
     private double length1;
