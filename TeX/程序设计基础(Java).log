@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2024.2.23)  15 APR 2024 23:03
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2024.2.23)  16 APR 2024 00:12
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1505,20 +1505,11 @@ Package fontspec Info: Font family 'STFangsong(0)' created for font
 
 ] [2
 
-] [1
-
-
-] [2]
-Chapter 1.
-File: pic/UML/Task.png Graphic file (type bmp)
-<pic/UML/Task.png>
-[3
-
 ]
-Overfull \hbox (0.37389pt too wide) in paragraph at lines 189--194
-[]\TU/lmr/m/n/10 Java \TU/SongtiSCLight(0)/m/n/10 是 纯 面 向 对 象 的 语 言\TU/lmr/m/n/10 , \TU/SongtiSCLight(0)/m/n/10 因 此 \TU/lmr/m/n/10 Java \TU/SongtiSCLight(0)/m/n/10 程 序 中 的 所 有 函 数 \TU/lmr/m/n/10 (\TU/SongtiSCLight(0)/m/n/10 我 们 在 \TU/lmr/m/n/10 Java \TU/SongtiSCLight(0)/m/n/10 中 习 惯 将 其 称 为 \TU/SongtiSCLight(0)/b/n/10 方 法\TU/lmr/m/n/10 , method)
- []
-
+Chapter 1.
+(/usr/local/texlive/2023/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2023/02/27 1.9 listings language file
+)
 
 Package fontspec Info: Font family 'Menlo(1)' created for font 'Menlo' with
 (fontspec)             options [].
@@ -1536,138 +1527,178 @@ Package fontspec Info: Font family 'Menlo(1)' created for font 'Menlo' with
 (fontspec)             <->"Menlo/BI/AAT"
 (fontspec)             - 'bold italic small caps'  (b/scit) with NFSS spec.: 
 
-[4] (/usr/local/texlive/2023/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2023/02/27 1.9 listings language file
-)
-Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 242.
- (../src/cn/edu/nwpu/software/strik0r/TaskManagement/Task/Task.java [5]) [6]
+
+Overfull \hbox (5.75214pt too wide) in paragraph at lines 154--157
+\TU/SongtiSCLight(0)/m/n/10 其 中\TU/lmr/m/n/10 , [][][][] \TU/SongtiSCLight(0)/m/n/10 可 以 是 任 意 的 数 据 类 型\TU/lmr/m/n/10 , \TU/SongtiSCLight(0)/m/n/10 但 数 组 中 的 所 有 元 素 必 须 具 有 相 同 的 数 据 类 型\TU/lmr/m/n/10 . []
+ []
+
+
+Overfull \hbox (3.29631pt too wide) in paragraph at lines 173--176
+\TU/SongtiSCLight(0)/m/n/10 其 中 [][][][] 为 数 组 的 大 小\TU/lmr/m/n/10 , \TU/SongtiSCLight(0)/m/n/10 即 数 组 中 可 以 存 放 的 元 素 的 个 数\TU/lmr/m/n/10 . \TU/SongtiSCLight(0)/m/n/10 这 条 语 句 新 建 了 一 个 大 小 为 []
+ []
+
+[1
+
+
+]
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 200.
+See the caption package documentation for explanation.
+
+[2] [3] [4
+
+] [5] [6]
 Chapter 2.
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\lstinline' on input line 265.
-
+File: pic/UML/Task.png Graphic file (type bmp)
+<pic/UML/Task.png>
 [7
 
 ]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\lstinline' on input line 314.
-
-
-Overfull \hbox (18.90825pt too wide) in paragraph at lines 330--332
-[]\TU/lmr/m/n/10 Java \TU/SongtiSCLight(0)/m/n/10 是 面 向 对 象 的 语 言\TU/lmr/m/n/10 , \TU/SongtiSCLight(0)/m/n/10 因 此 我 们 通 常 用 [][][][][][][][][][][][][][] 来 调 用 对 象 的 方 法\TU/lmr/m/n/10 , \TU/SongtiSCLight(0)/m/n/10 用 [][][][][][][]
+Overfull \hbox (0.37389pt too wide) in paragraph at lines 409--414
+[]\TU/lmr/m/n/10 Java \TU/SongtiSCLight(0)/m/n/10 是 纯 面 向 对 象 的 语 言\TU/lmr/m/n/10 , \TU/SongtiSCLight(0)/m/n/10 因 此 \TU/lmr/m/n/10 Java \TU/SongtiSCLight(0)/m/n/10 程 序 中 的 所 有 函 数 \TU/lmr/m/n/10 (\TU/SongtiSCLight(0)/m/n/10 我 们 在 \TU/lmr/m/n/10 Java \TU/SongtiSCLight(0)/m/n/10 中 习 惯 将 其 称 为 \TU/SongtiSCLight(0)/b/n/10 方 法\TU/lmr/m/n/10 , method)
  []
 
 [8]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [9]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [10] [11] [12
-
-] [13] [14]
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 462.
+ (../src/cn/edu/nwpu/software/strik0r/TaskManagement/Task/Task.java [9]) [10]
 Chapter 3.
-[15
 
-] [16]
-Chapter 4.
-[17
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\lstinline' on input line 485.
 
-] [18
+[11
 
 ]
-Chapter 5.
 
-Overfull \hbox (1.35022pt too wide) in paragraph at lines 898--908
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\lstinline' on input line 534.
+
+
+Overfull \hbox (18.90825pt too wide) in paragraph at lines 550--552
+[]\TU/lmr/m/n/10 Java \TU/SongtiSCLight(0)/m/n/10 是 面 向 对 象 的 语 言\TU/lmr/m/n/10 , \TU/SongtiSCLight(0)/m/n/10 因 此 我 们 通 常 用 [][][][][][][][][][] 来 调 用 对 象 的 方 法\TU/lmr/m/n/10 , \TU/SongtiSCLight(0)/m/n/10 用 [][][][][]
+ []
+
+[12]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [13]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [14] [15] [16
+
+] [17] [18]
+Chapter 4.
+[19
+
+] [20]
+Chapter 5.
+[21
+
+] [22
+
+]
+Chapter 6.
+
+Overfull \hbox (1.35022pt too wide) in paragraph at lines 1118--1128
  [][] 
  []
 
-[19]
-Underfull \hbox (badness 10000) in paragraph at lines 926--926
+[23]
+Underfull \hbox (badness 10000) in paragraph at lines 1146--1146
 []|\TU/SongtiSCLight(0)/m/n/10 所 有 的 变 量 必 须 是 公 开、|  静
  []
 
 
-Underfull \hbox (badness 6808) in paragraph at lines 927--928
+Underfull \hbox (badness 6808) in paragraph at lines 1147--1148
 []|\TU/SongtiSCLight(0)/m/n/10 没 有 构 造 方 法\TU/lmr/m/n/10 , \TU/SongtiSCLight(0)/m/n/10 不 能 用
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 928--931
-[]|\TU/SongtiSCLight(0)/m/n/10 可 以 包 含 [][][][][][][][][][][]
+Underfull \hbox (badness 10000) in paragraph at lines 1148--1151
+[]|\TU/SongtiSCLight(0)/m/n/10 可 以 包 含 [][][][][][][][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 928--931
-\TU/SongtiSCLight(0)/m/n/10 的 抽 象 实 例 方 法、| [][][][]
+Underfull \hbox (badness 10000) in paragraph at lines 1148--1151
+\TU/SongtiSCLight(0)/m/n/10 的 抽 象 实 例 方 法、| [][][]
  []
 
 
-Overfull \hbox (10.05757pt too wide) in paragraph at lines 920--933
+Underfull \hbox (badness 3439) in paragraph at lines 1148--1151
+[][][][][][][][] \TU/SongtiSCLight(0)/m/n/10 的 静 态 方 法\TU/lmr/m/n/10 .
+ []
+
+
+Overfull \hbox (10.05757pt too wide) in paragraph at lines 1140--1153
  [][] 
  []
 
-[20] [21
+[24] [25
 
-] [22]
-Chapter 6.
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\lstinline' on input line 945.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\lstinline' on input line 958.
-
-[23
-
-] [24
-
-] [25] [26]
+] [26]
 Chapter 7.
 
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 969.
-See the caption package documentation for explanation.
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\lstinline' on input line 1165.
+
+
+Overfull \hbox (3.14328pt too wide) in paragraph at lines 1169--1174
+\TU/SongtiSCLight(0)/m/n/10 性 指 的 是 当 前 节 点 的 下 一 节 点\TU/lmr/m/n/10 . \TU/SongtiSCLight(0)/m/n/10 为 了 保 证 程 序 的 封 装 性 不 被 破 坏\TU/lmr/m/n/10 , \TU/SongtiSCLight(0)/m/n/10 你 可 以 把 这 些 参 数 设 置 为 私 有 \TU/lmr/m/n/10 ([]
+ []
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\lstinline' on input line 1178.
 
 [27
 
-] [28]
+] [28
+
+] [29] [30]
 Chapter 8.
-[29
-
-] [30
-
-] [31] [32]
-Chapter 9.
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\lstinline' on input line 1044.
-
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 1050.
+(caption)                particular \caption on input line 1189.
 See the caption package documentation for explanation.
 
-(./LateX_tem/appendix.tex) [33
+[31
+
+] [32]
+Chapter 9.
+[33
 
 ] [34
 
-] (./LateX_tem/endpage.tex [35]
+] [35] [36]
+Chapter 10.
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\lstinline' on input line 1264.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 1270.
+See the caption package documentation for explanation.
+
+(./LateX_tem/appendix.tex) [37
+
+] [38
+
+] (./LateX_tem/endpage.tex [39]
 File: pic/i_love_npu.jpeg Graphic file (type bmp)
 <pic/i_love_npu.jpeg>
-) [36] (./程序设计基础(Java).aux)
+) [40] (./程序设计基础(Java).aux)
 Package rerunfilecheck Info: File `程序设计基础(Java).out' has not changed.
-(rerunfilecheck)             Checksum: E3AD76FC0E957546E2AB5717DCA64F86;5413.
+(rerunfilecheck)             Checksum: 6B9B4C7B49BC4E40B500AF3EC73037BF;5767.
  ) 
 Here is how much of TeX's memory you used:
- 50183 strings out of 476683
- 1233639 string characters out of 5804047
- 2055018 words of memory out of 5000000
- 69497 multiletter control sequences out of 15000+600000
- 525392 words of font info for 160 fonts, out of 8000000 for 9000
+ 50267 strings out of 476683
+ 1237911 string characters out of 5804047
+ 2045018 words of memory out of 5000000
+ 69580 multiletter control sequences out of 15000+600000
+ 525400 words of font info for 161 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 89i,17n,97p,728b,1907s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 89i,16n,97p,728b,1846s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on 程序设计基础(Java).pdf (42 pages).
+Output written on 程序设计基础(Java).pdf (46 pages).

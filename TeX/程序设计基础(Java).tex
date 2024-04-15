@@ -112,7 +112,7 @@
 \pagenumbering{roman} % 切换回罗马数字页码
 \addtocontents{toc}{\protect\thispagestyle{empty}}
 \pagestyle{plain}
-{\tableofcontents}
+{\small \tableofcontents}
 \newpage
 \thispagestyle{empty}
 \cleardoublepage % 确保正文从奇数页开始
@@ -124,6 +124,226 @@
 \makeatother
 
 \mainmatter
+
+\chapter{Java 编程基础}
+
+本章介绍 Java 程序设计的基础知识, 我们假定读者具有一定的程序设计知识, 并具有一定的
+C 语言程序设计能力基础, 但这并不是必须的, 我们仍然会讲到程序设计中的大部分基本概念,
+因此如果你并没有学过编程, 或者没有学过 C 语言, 都没有关系, 我们会尽量照顾到零基础
+的同学.
+
+\section{一维数组}
+
+\textbf{数组} (array) 是具有固定大小的、具有相同类型变量的有序集合.
+是程序设计中的一种重要的数据结构, 是对批量数据的一种高效、良好的组织方法,
+在对数据的批量化操作中非常有用, 本节我们介绍 Java 中的一维数组.
+
+\subsection{数组的声明、初始化与访问}
+
+\subsubsection{数组变量的声明}
+
+声明一个数组需要声明一个引用\footnote{
+    在 Java 中, 数组是一个引用类型.
+}数组的变量 \lstinline|arrayRefVar| 并指定
+数组的元素类型 \lstinline|elementType|, 在 Java 中, 有两种声明数组的方法, 
+它们都是有效的:
+\begin{lstlisting}[language=Java]
+elementType[] arrayRefVar; // 方法一
+elementType arrayRefVar[]; // 方法二, 但并不推荐
+\end{lstlisting}
+其中, \lstinline|elementType| 可以是任意的数据类型, 但数组中的所有元素
+必须具有相同的数据类型. \lstinline|arrayRefVar| 是引用该数组的一个变量,
+在后续的代码中我们可以利用 \lstinline|arrayRefVar| 来访问该数组.
+
+注意到声明数组的方法二其实是与 C/C++ 中声明数组的方法是相同的,
+Java 支持这样的声明方式, 但是我们更推荐采用方法一的方式来完成数组的声明.
+
+\subsubsection{数组的创建}
+
+数组是引用数据类型, 引用数据类型与基本数据类型变量不同, {\kaishu 声明引用数据类型变量
+时并不会给该变量分配任何内存空间}, 它只是创建了一个对该变量的引用的存储位置.
+这就是说, 数组变量和数组实际上是不同的, 更合适的表述是, {\kaishu 一个数组变量是对数组
+的一个引用}.
+因此仅仅是声明一个数组, 那么此时 \lstinline|arrayRefVar| 的值应该为
+\lstinline|null|, 因此在声明数组变量之后, 应该使用 \lstinline|new| 操作符
+创建数组并将其引用赋给变量:
+\begin{lstlisting}[language=Java]
+arrayRefVar = new elementType[arraySize];
+\end{lstlisting}
+其中 \lstinline|arraySize| 为数组的大小, 即数组中可以存放的元素的个数.
+这条语句新建了一个大小为 \lstinline|arraySize| 的数组, 并将其引用
+赋给了变量 \lstinline|arrayRefVar|.
+
+对于数组变量的声明和创建, 其实可以将声明数组、创建数组、将数组的引用赋值给
+引用变量这三个步骤, 即上述的两条语句合并到一起:
+\begin{lstlisting}[language=Java]
+elementType[] arrayRefVar = new elementType[arraySize];
+\end{lstlisting}
+
+我们要说明的是, 尽管数组变量与数组是不同的概念, 即数组变量 \lstinline|arrayRefVar|
+只是对数组的一个引用, 但我们在下文中通常不强调这两个概念之间的区别,
+所以也可以说 \lstinline|arrayRefVar| 是一个数组.
+
+\subsubsection{数组的大小和默认值}
+
+在给数组分配内存空间时需要知道数组的大小, 因此在创建数组时必须指定
+数组的大小 \lstinline|arraySize|, {\kaishu 数组的大小决定了数组中能够存放的元素个数,
+在数组创建完成后, 数组的大小是不能再被修改的}. 数组的大小被存储在
+\lstinline|length| 属性中, 我们可以使用 \lstinline|arrayRefVar.length|
+来得到数组的大小.
+
+数组被创建完毕后, 其元素被赋予默认值, 这与 C 是不同的. 在 C 语言中, 数组在创建
+完毕后, 这段内存空间中可能还存在一些垃圾数据, 因此直接使用未初始化的数组可能会
+引发程序的一些问题, 但在 Java 中你可以不用担心这个问题. Java 中各种类型
+数组的元素默认值如表 \ref{table: Java 中数组的元素默认值} 所示.
+
+{\captionof{table}{Java 中数组的元素默认值} % 表格标题
+\label{table: Java 中数组的元素默认值} % 交叉引用标签
+\begin{longtable}{p{7em}p{10em}}
+    \hline
+    % 表头
+    \textbf{数组类型} & \textbf{默认值} \\
+    \hline
+    \endhead
+    \hline
+    \endfoot
+
+    % 表格内容
+    数值型 & 对应元素类型的 \lstinline|0| \\ 
+    字符型 & \lstinline|'\u0000'| \\ 
+    \lstinline|boolean| & \lstinline|false| \\
+\end{longtable}}
+
+\subsubsection{访问数组元素}
+
+{\kaishu 可以通过数组元素的\textbf{索引} (index) 来访问数组的元素},
+数组元素的索引从 \lstinline|0| 开始, 因此, 数组元素索引的有效范围是
+\lstinline|0| 到 \lstinline|arrayRefVar.length - 1|,
+同时, 在有效范围内的表达式也可以作为索引使用.
+
+利用索引访问到数组元素后, 就可以像使用通常的变量一样使用数组的元素了,
+你可以用它来参与运算并给其他变量赋值, 也可以用一个有效的表达式来给它赋值.
+\begin{example}
+    创建一个大小为 \lstinline|6| 的, 元素类型为 \lstinline|int|
+    的整型数组 \lstinline|myList|, 并为其进行初始化赋值.
+\begin{lstlisting}[language=Java]
+// 声明并创建数组
+int[] myList = new int[6];
+
+// 初始化赋值
+myList[0] = 1;
+myList[1] = 1;
+myList[2] = 4;
+myList[3] = 5;
+myList[2+2] = 1;
+myList[5] = 4;
+\end{lstlisting}
+此时, \lstinline|myList| 在内存空间中的存在形式如图 \ref{fig: 数组的内存形式} 所示.
+注意到在上述代码中, 我们实际上还是用了表达式 \lstinline|2 + 2| 来代替 \lstinline|4|
+来给数组的第五个 (要注意数组元素的索引是从 \lstinline|0| 开始, 到
+\lstinline|myList.length - 1| 结束的) 元素赋值.
+\end{example}
+
+\begin{figure}[H]
+    \centering
+    % 图的内容
+
+
+
+    \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+    \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+    %uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+    
+    %Straight Lines [id:da007846128635548899] 
+    \draw    (448,59.75) -- (266,59.75) ;
+    \draw [shift={(263,59.75)}, rotate = 360] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (5.36,-2.57) -- (0,0) -- (5.36,2.57) -- cycle    ;
+    
+    % Text Node
+    \draw    (132,59.75) -- (263,59.75) -- (263,91.75) -- (132,91.75) -- cycle  ;
+    \draw (197.5,75.75) node   [align=left] {\begin{minipage}[lt]{86.36pt}\setlength\topsep{0pt}
+    \begin{center}
+    1
+    \end{center}
+    
+    \end{minipage}};
+    % Text Node
+    \draw    (132,91.75) -- (263,91.75) -- (263,123.75) -- (132,123.75) -- cycle  ;
+    \draw (197.5,107.75) node   [align=left] {\begin{minipage}[lt]{86.36pt}\setlength\topsep{0pt}
+    \begin{center}
+    1
+    \end{center}
+    
+    \end{minipage}};
+    % Text Node
+    \draw    (132,123.75) -- (263,123.75) -- (263,155.75) -- (132,155.75) -- cycle  ;
+    \draw (197.5,139.75) node   [align=left] {\begin{minipage}[lt]{86.36pt}\setlength\topsep{0pt}
+    \begin{center}
+    4
+    \end{center}
+    
+    \end{minipage}};
+    % Text Node
+    \draw    (132,155.75) -- (263,155.75) -- (263,187.75) -- (132,187.75) -- cycle  ;
+    \draw (197.5,171.75) node   [align=left] {\begin{minipage}[lt]{86.36pt}\setlength\topsep{0pt}
+    \begin{center}
+    5
+    \end{center}
+    
+    \end{minipage}};
+    % Text Node
+    \draw    (132,187.75) -- (263,187.75) -- (263,219.75) -- (132,219.75) -- cycle  ;
+    \draw (197.5,203.75) node   [align=left] {\begin{minipage}[lt]{86.36pt}\setlength\topsep{0pt}
+    \begin{center}
+    1
+    \end{center}
+    
+    \end{minipage}};
+    % Text Node
+    \draw    (132,219.75) -- (263,219.75) -- (263,251.75) -- (132,251.75) -- cycle  ;
+    \draw (197.5,235.75) node   [align=left] {\begin{minipage}[lt]{86.36pt}\setlength\topsep{0pt}
+    \begin{center}
+    4
+    \end{center}
+    
+    \end{minipage}};
+    % Text Node
+    \draw (266,75.75) node [anchor=west] [inner sep=0.75pt]   [align=center] {\lstinline|myList[0]|};
+    % Text Node
+    \draw (266,107.75) node [anchor=west] [inner sep=0.75pt]   [align=center] {\lstinline|myList[1]|};
+    % Text Node
+    \draw (266,139.75) node [anchor=west] [inner sep=0.75pt]   [align=center] {\lstinline|myList[2]|};
+    % Text Node
+    \draw (266,171.75) node [anchor=west] [inner sep=0.75pt]   [align=center] {\lstinline|myList[3]|};
+    % Text Node
+    \draw (266,203.75) node [anchor=west] [inner sep=0.75pt]   [align=center] {\lstinline|myList[4]|};
+    % Text Node
+    \draw (266,235.75) node [anchor=west] [inner sep=0.75pt]   [align=center] {\lstinline|myList[5]|};
+    % Text Node
+    \draw    (448,47.25) -- (527,47.25) -- (527,72.25) -- (448,72.25) -- cycle  ;
+    \draw (451,59.75) node [anchor=west] [inner sep=0.75pt]   [align=center] {\lstinline|myList|};
+    % Text Node
+    \draw (355.26,55.75) node [anchor=south] [inner sep=0.75pt]   [align=center] {ref};
+    % Text Node
+    \draw (433,134) node [anchor=west] [inner sep=0.75pt]   [align=left] {variable that\\refer to an array};
+    % Text Node
+    \draw (433,203.75) node [anchor=west] [inner sep=0.75pt]   [align=left] {access an emelemt\\of an array by its index};
+    % Connection
+    \draw  [dash pattern={on 4.5pt off 4.5pt}]  (487.5,111) -- (487.5,75.25) ;
+    \draw [shift={(487.5,72.25)}, rotate = 90] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (5.36,-2.57) -- (0,0) -- (5.36,2.57) -- cycle    ;
+    % Connection
+    \draw  [dash pattern={on 4.5pt off 4.5pt}]  (430,203.75) -- (345,203.75) ;
+    \draw [shift={(342,203.75)}, rotate = 360] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (5.36,-2.57) -- (0,0) -- (5.36,2.57) -- cycle    ;
+    
+    \end{tikzpicture}
+
+    \caption{数组的内存形式}
+    \label{fig: 数组的内存形式}
+\end{figure}
+
+\subsubsection{使用初值列表来初始化数组}
+
+
 
 \part{面向对象分析与设计}
 

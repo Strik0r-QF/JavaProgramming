@@ -12,6 +12,7 @@ public class Task {
     private GregorianCalendar deadline; // 截止时间
     private GregorianCalendar arrangement; // 安排时间 (计划去完成它的时间)
     private String info;
+    // TODO: 完成有关优先级、完成状态、标签、评论、子任务、任务动态、位置提醒等属性的概要设计
 
     // getter & setter
     public int getId() {
