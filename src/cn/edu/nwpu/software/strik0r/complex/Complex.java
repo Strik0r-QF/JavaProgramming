@@ -1,14 +1,14 @@
-package cn.edu.nwpu.software.strik0r.abstract_class.complex;
+package cn.edu.nwpu.software.strik0r.complex;
 
 import org.jetbrains.annotations.NotNull;
 
 public class Complex implements Comparable<Complex>, Cloneable {
-    private double realis = 0;
-    private double imaginary = 0;
+    private double realisPart = 0;
+    private double imaginaryPart = 0;
 
-    public Complex(double realis, double imaginary) {
-        this.realis = realis;
-        this.imaginary = imaginary;
+    public Complex(double realis, double imaginaryPart) {
+        this.realisPart = realis;
+        this.imaginaryPart = imaginaryPart;
     }
 
     public Complex() {
@@ -16,20 +16,20 @@ public class Complex implements Comparable<Complex>, Cloneable {
     }
 
     public Complex(double realis) {
-        this.realis = realis;
+        this.realisPart = realis;
     }
 
     public double Re() {
-        return realis;
+        return realisPart;
     }
 
     public double Im() {
-        return imaginary;
+        return imaginaryPart;
     }
 
     public Complex add(@NotNull Complex w) {
-        double real = realis+w.Re();
-        double imaginary = this.imaginary + w.Im();
+        double real = realisPart+w.Re();
+        double imaginary = this.imaginaryPart + w.Im();
         return new Complex(real, imaginary);
     }
 
@@ -39,13 +39,13 @@ public class Complex implements Comparable<Complex>, Cloneable {
     }
 
     public Complex multiply(@NotNull Complex w) {
-        double real = realis*w.Re() - imaginary*w.Im();
-        double imaginary = this.imaginary*w.Re() + this.realis*w.Im();
+        double real = realisPart*w.Re() - imaginaryPart *w.Im();
+        double imaginary = this.imaginaryPart *w.Re() + this.realisPart*w.Im();
         return new Complex(real, imaginary);
     }
 
     public Complex scalarMultiply(double k) {
-        return new Complex(realis*k, imaginary*k);
+        return new Complex(realisPart*k, imaginaryPart *k);
     }
 
     public Complex divide(@NotNull Complex w) {
@@ -54,11 +54,15 @@ public class Complex implements Comparable<Complex>, Cloneable {
     }
 
     public double modular() {
-        return Math.sqrt(realis*realis + imaginary*imaginary);
+        return Math.sqrt(realisPart*realisPart + imaginaryPart * imaginaryPart);
+    }
+
+    public double argument() {
+        return Math.atan2(imaginaryPart, realisPart);
     }
 
     public Complex conjugate() {
-        return new Complex(realis, -imaginary);
+        return new Complex(realisPart, -imaginaryPart);
     }
 
     @Override
@@ -68,6 +72,11 @@ public class Complex implements Comparable<Complex>, Cloneable {
 
     @Override
     public String toString() {
-        return imaginary==0? realis+"" : realis+"+"+imaginary+"i";
+        return imaginaryPart ==0? realisPart+"" : realisPart+"+"+ imaginaryPart +"i";
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }
